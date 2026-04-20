@@ -9,41 +9,29 @@ namespace AbazovPr7
     class Program
     {
         /// <summary>
-        /// Запускает вывод списка галактик.
+        /// Основной метод для демонстрации отладки строковых переменных.
         /// </summary>
         static void Main(string[] args)
         {
-            var theGalaxies = new List<Galaxy>
-            {
-                new Galaxy() { Name = "Tadpole", MegaLightYears = 400, GalaxyType = new GType('S') },
-                new Galaxy() { Name = "Pinwheel", MegaLightYears = 25, GalaxyType = new GType('S') },
-                new Galaxy() { Name = "Cartwheel", MegaLightYears = 500, GalaxyType = new GType('L') },
-                new Galaxy() { Name = "Small Magellanic Cloud", MegaLightYears = .2, GalaxyType = new GType('I') }
-            };
+            char[] letters = { 'f', 'r', 'e', 'd', ' ', 's', 'm', 'i', 't', 'h' };
+            string name = "";
 
-            foreach (var galaxy in theGalaxies)
+            for (int i = 0; i < letters.Length; i++)
             {
-                Console.WriteLine($"{galaxy.Name}  {galaxy.MegaLightYears} ({galaxy.GalaxyType.MyGType})");
+                name += letters[i];
+                SendMessage(name);
             }
+
+            Console.ReadKey();
         }
-    }
 
-    /// <summary>
-    /// Представляет модель галактики.
-    /// </summary>
-    public class Galaxy
-    {
-        public string Name { get; set; }
-        public double MegaLightYears { get; set; }
-        public GType GalaxyType { get; set; }
-    }
-
-    /// <summary>
-    /// Описывает тип галактики.
-    /// </summary>
-    public class GType
-    {
-        public GType(char type) => MyGType = type;
-        public char MyGType { get; set; }
+        /// <summary>
+        /// Выводит текущее состояние строки в консоль.
+        /// </summary>
+        /// <param name="name">Текущее имя.</param>
+        static void SendMessage(string name)
+        {
+            Console.WriteLine("Hello, " + name);
+        }
     }
 }
