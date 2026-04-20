@@ -9,33 +9,41 @@ namespace AbazovPr7
     class Program
     {
         /// <summary>
-        /// Точка входа в программу для расчета чисел Фибоначчи.
+        /// Запускает вывод списка галактик.
         /// </summary>
         static void Main(string[] args)
         {
-            int result = Fibonacci(5);
-            Console.WriteLine(result);
-        }
-
-        /// <summary>
-        /// Вычисляет n-ное число последовательности Фибоначчи.
-        /// </summary>
-        /// <param name="n">Порядковый номер числа.</param>
-        /// <returns>Число Фибоначчи.</returns>
-        static int Fibonacci(int n)
-        {
-            int n1 = 0;
-            int n2 = 1;
-            int sum;
-
-            for (int i = 2; i <= n; i++)
+            var theGalaxies = new List<Galaxy>
             {
-                sum = n1 + n2;
-                n1 = n2;
-                n2 = sum;
-            }
+                new Galaxy() { Name = "Tadpole", MegaLightYears = 400, GalaxyType = new GType('S') },
+                new Galaxy() { Name = "Pinwheel", MegaLightYears = 25, GalaxyType = new GType('S') },
+                new Galaxy() { Name = "Cartwheel", MegaLightYears = 500, GalaxyType = new GType('L') },
+                new Galaxy() { Name = "Small Magellanic Cloud", MegaLightYears = .2, GalaxyType = new GType('I') }
+            };
 
-            return n == 0 ? n1 : n2;
+            foreach (var galaxy in theGalaxies)
+            {
+                Console.WriteLine($"{galaxy.Name}  {galaxy.MegaLightYears} ({galaxy.GalaxyType.MyGType})");
+            }
         }
+    }
+
+    /// <summary>
+    /// Представляет модель галактики.
+    /// </summary>
+    public class Galaxy
+    {
+        public string Name { get; set; }
+        public double MegaLightYears { get; set; }
+        public GType GalaxyType { get; set; }
+    }
+
+    /// <summary>
+    /// Описывает тип галактики.
+    /// </summary>
+    public class GType
+    {
+        public GType(char type) => MyGType = type;
+        public char MyGType { get; set; }
     }
 }
